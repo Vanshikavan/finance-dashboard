@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Environment Variables (Secrets)
+.env
+.env.local
+.env.*.local
+
+# Prisma Generated Client
+# If you customized the output path, add it here (e.g., /src/generated)
+node_modules/@prisma/client
+
+# Build artifacts
+dist/
+build/
+*.tsbuildinfo
+
+# OS and IDE files
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Prisma Studio
+.prisma
