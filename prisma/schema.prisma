@@ -1,17 +1,11 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  output   = "./generated/client"
 }
 
 datasource db {
   provider = "postgresql"
 }
-
 
 model User {
   id           String        @id @default(uuid())
@@ -28,21 +22,33 @@ model User {
 }
 
 model Transaction {
-  id          String      @id @default(uuid())
-  amount      Float
-  type        TxType
-  category    String
-  date        DateTime
-  notes       String?
-  userId      String
-  user        User        @relation(fields: [userId], references: [id])
-  deletedAt   DateTime?   // soft delete — don't actually remove data
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id        String    @id @default(uuid())
+  amount    Float
+  type      TxType
+  category  String
+  date      DateTime
+  notes     String?
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
   @@map("transactions")
 }
 
-enum Role   { VIEWER ANALYST ADMIN }
-enum Status { ACTIVE INACTIVE }
-enum TxType { INCOME EXPENSE }
+enum Role {
+  VIEWER
+  ANALYST
+  ADMIN
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+enum TxType {
+  INCOME
+  EXPENSE
+}
